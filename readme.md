@@ -56,3 +56,26 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Notes  :
+
+run migrate :
+php artisan migrate 
+
+THEN run seed :
+php artisan db:seed 
+
+Or by one command (migrate + seed ) :
+php artisan migrate:refresh --seed 
+
+or you can use my sql file "twitter.sql" in the project root
+
+
+THEN  make autoload helpers :
+composer dump-autoload 
+
+
+
+
+
