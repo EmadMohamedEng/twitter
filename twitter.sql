@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-12-22 23:58:38
+Date: 2018-12-23 00:47:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,15 +24,31 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of migrations
 -- ----------------------------
-INSERT INTO `migrations` VALUES ('1', '2018_12_22_175011_create_twitts_table', '1');
-INSERT INTO `migrations` VALUES ('2', '2018_12_22_175011_create_twitt_likes_table', '1');
-INSERT INTO `migrations` VALUES ('3', '2018_12_22_175012_add_foreign_keys_to_twitts_table', '1');
-INSERT INTO `migrations` VALUES ('4', '2018_12_22_175012_add_foreign_keys_to_twitt_likes_table', '1');
+INSERT INTO `migrations` VALUES ('1', '2014_10_12_100000_create_password_resets_table', '1');
+INSERT INTO `migrations` VALUES ('2', '2018_12_22_223951_create_twitt_likes_table', '1');
+INSERT INTO `migrations` VALUES ('3', '2018_12_22_223951_create_twitts_table', '1');
+INSERT INTO `migrations` VALUES ('4', '2018_12_22_223951_create_users_table', '1');
+INSERT INTO `migrations` VALUES ('5', '2018_12_22_223952_add_foreign_keys_to_twitt_likes_table', '1');
+INSERT INTO `migrations` VALUES ('6', '2018_12_22_223952_add_foreign_keys_to_twitts_table', '1');
+
+-- ----------------------------
+-- Table structure for `password_resets`
+-- ----------------------------
+DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of password_resets
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `twitts`
@@ -40,14 +56,14 @@ INSERT INTO `migrations` VALUES ('4', '2018_12_22_175012_add_foreign_keys_to_twi
 DROP TABLE IF EXISTS `twitts`;
 CREATE TABLE `twitts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `twitt` text NOT NULL,
+  `twitt` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `twi_user_fk1` (`user_id`),
   CONSTRAINT `twi_user_fk1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of twitts
@@ -67,14 +83,14 @@ CREATE TABLE `twitt_likes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `twitt_id` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `twi_user_fk1` (`user_id`),
   KEY `twitt_likes_ibfk_2` (`twitt_id`),
   CONSTRAINT `twitt_likes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `twitt_likes_ibfk_2` FOREIGN KEY (`twitt_id`) REFERENCES `twitts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of twitt_likes
@@ -88,7 +104,7 @@ INSERT INTO `twitt_likes` VALUES ('19', '6', '23', '2018-12-22 21:54:47', '2018-
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
