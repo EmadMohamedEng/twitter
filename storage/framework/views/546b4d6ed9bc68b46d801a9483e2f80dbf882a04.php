@@ -16,7 +16,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-    <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 
     <link rel="stylesheet" href="<?php echo e(url('/').'/front/'); ?>css/style.css">
 </head>
@@ -111,6 +113,7 @@
             cache: false,
             processData: false,
             success: function (res) {
+                $('#twitt_text').val("");
                 if (res.status == 'success') {
                   $("#twitt_result").append(res.data);
                 }
@@ -161,5 +164,42 @@ function    likeDislike(twitt_id){
 
 </script>
 
+
+
+<script>
+
+    function updateTwitts() {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: "<?php echo e(url('updateTwitts')); ?>",
+            type: 'POST',
+          //  dataType: 'html',
+            success: function (result) {
+                console.log(result.data);
+                $("#twitt_result").html(result.data);
+            }
+        });
+    }
+
+
+
+
+
+
+    setInterval(function () {
+        updateTwitts();
+    }, 5000);
+
+</script>
+
+
 </body>
 </html>
+
+

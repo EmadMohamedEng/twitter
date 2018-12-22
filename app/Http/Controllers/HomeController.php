@@ -71,6 +71,7 @@ class HomeController extends Controller
             $TwittLike->user_id = $user_id;
             $TwittLike->twitt_id = $twitt_id;
             $TwittLike->save() ;
+
             return Response(array('status' => "success",'result'=>'add'));
 
         }
@@ -79,7 +80,12 @@ class HomeController extends Controller
     }
 
 
-
+    public function updateTwitts()
+    {
+        $twitts = Twitt::get();
+        $data = view('front.twitts_update', compact('twitts'))->render();
+        return Response(array('status' => "success", 'data' => $data));
+    }
 
 
 }
