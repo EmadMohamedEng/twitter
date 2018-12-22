@@ -27,3 +27,8 @@ Route::get('facebook/callback', 'Auth\LoginController@handleProviderCallback');
 // google routes
 Route::get('login/google', 'Auth\LoginController@googleRedirectToProvider')->name('google');
 Route::get('google/callback', 'Auth\LoginController@googleHandleProviderCallback');
+
+
+Route::post('twitt', 'HomeController@twitt')->name('twitt');
+
+Route::post('twittLikeDislike', 'HomeController@twittLikeDislike')->name('twittLikeDislike');
