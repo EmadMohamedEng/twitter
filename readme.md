@@ -61,10 +61,13 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Notes  :
 
 run migrate :
-php artisan migrate 
+                php artisan migrate 
 
 THEN run seed :
-php artisan db:seed 
+                  php artisan db:seed 
+
+OR in one command :  
+                     php artisan migrate:refresh --seed
 
 or you can use my sql file "twitter.sql" in the project root
 
