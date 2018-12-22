@@ -16,7 +16,7 @@ class CreateTwittLikesTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->integer('user_id')->index('twi_user_fk1');
-			$table->integer('twitt_id');
+			$table->integer('twitt_id')->index('twitt_likes_ibfk_2');
 			$table->timestamps();
 		});
 	}
