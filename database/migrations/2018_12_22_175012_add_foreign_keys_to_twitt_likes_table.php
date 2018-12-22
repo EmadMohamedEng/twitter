@@ -15,7 +15,7 @@ class AddForeignKeysToTwittLikesTable extends Migration {
 		Schema::table('twitt_likes', function(Blueprint $table)
 		{
 			$table->foreign('user_id', 'twitt_likes_ibfk_1')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
-			$table->foreign('user_id', 'twitt_likes_ibfk_2')->references('id')->on('twitts')->onUpdate('CASCADE')->onDelete('CASCADE');
+			$table->foreign('twitt_id', 'twitt_likes_ibfk_2')->references('id')->on('twitts')->onUpdate('CASCADE')->onDelete('CASCADE');
 		});
 	}
 
